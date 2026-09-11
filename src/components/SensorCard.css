@@ -1,0 +1,101 @@
+.sensor-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--trans), box-shadow var(--trans), border-color var(--trans);
+  position: relative;
+  overflow: hidden;
+}
+
+.sensor-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.sensor-card.risk-safe::before    { background: var(--safe); }
+.sensor-card.risk-warning::before { background: var(--warning); }
+.sensor-card.risk-danger::before  { background: var(--danger); }
+.sensor-card.risk-critical::before{ background: var(--critical); animation: pulse-bar 1s ease-in-out infinite; }
+
+@keyframes pulse-bar {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+
+.sensor-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card), 0 0 20px rgba(59,130,246,0.12); }
+
+.sensor-card.risk-safe:hover    { border-color: var(--safe-border); }
+.sensor-card.risk-warning:hover { border-color: var(--warning-border); }
+.sensor-card.risk-danger:hover  { border-color: var(--danger-border); }
+
+.sensor-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.sensor-card-icon { font-size: 1.3rem; }
+
+.sensor-card-value {
+  margin: 6px 0 2px;
+  line-height: 1;
+}
+
+.sensor-card-num {
+  font-size: 2.1rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.sensor-card-na {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.sensor-card-bool {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+}
+.sensor-card-bool.true  { background: var(--danger-bg); color: var(--danger); border: 1px solid var(--danger-border); }
+.sensor-card-bool.false { background: var(--safe-bg);   color: var(--safe);   border: 1px solid var(--safe-border); }
+
+.sensor-card-unit {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.sensor-card-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.sensor-card-sublabel {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.sensor-card-desc {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
